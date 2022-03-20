@@ -2,22 +2,23 @@ package http2_test
 
 import (
 	"bytes"
-	"crypto/tls"
 	"crypto/x509"
 	"errors"
 	"fmt"
-	"github.com/useflyent/fhttp/cookiejar"
-	"github.com/useflyent/fhttp/httptest"
-	"golang.org/x/net/publicsuffix"
 	"log"
-	ghttp "net/http"
 	"net/url"
 	"os"
 	"strings"
 	"testing"
 
-	http "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/http2"
+	tls "github.com/refraction-networking/utls"
+
+	"github.com/wnxd/fhttp/cookiejar"
+	"github.com/wnxd/fhttp/httptest"
+	"golang.org/x/net/publicsuffix"
+
+	http "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/http2"
 )
 
 // Tests if connection settings are written correctly
@@ -198,46 +199,6 @@ func TestClient_Load(t *testing.T) {
 		}
 		resp.Body.Close()
 	}
-}
-
-func TestGClient_Load(t *testing.T) {
-	u, err := url.Parse("http://localhost:8888")
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
-
-	pool, err := getCharlesCert()
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
-	c := ghttp.Client{
-		Transport: &ghttp.Transport{
-			ForceAttemptHTTP2: true,
-			Proxy:             ghttp.ProxyURL(u),
-			TLSClientConfig: &tls.Config{
-				RootCAs: pool,
-			},
-		},
-	}
-	req, err := ghttp.NewRequest("GET", "https://golang.org/pkg/net/mail/#Address", nil)
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
-	for i := 0; i < 10; i++ {
-		err := do(&c, req)
-		if err != nil {
-			t.Fatalf(err.Error())
-		}
-	}
-}
-
-func do(c *ghttp.Client, req *ghttp.Request) error {
-	resp, err := c.Do(req)
-	if err != nil {
-		return err
-	}
-	resp.Body.Close()
-	return nil
 }
 
 func getCharlesCert() (*x509.CertPool, error) {

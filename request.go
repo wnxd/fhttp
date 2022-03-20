@@ -10,7 +10,6 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"crypto/tls"
 	"encoding/base64"
 	"errors"
 	"fmt"
@@ -25,7 +24,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/useflyent/fhttp/httptrace"
+	tls "github.com/refraction-networking/utls"
+
+	"github.com/wnxd/fhttp/httptrace"
 
 	"golang.org/x/net/idna"
 )

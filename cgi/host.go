@@ -29,7 +29,7 @@ import (
 	"strconv"
 	"strings"
 
-	http "github.com/useflyent/fhttp"
+	http "github.com/wnxd/fhttp"
 
 	"golang.org/x/net/http/httpguts"
 )

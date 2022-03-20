@@ -11,7 +11,6 @@ import (
 	"compress/gzip"
 	"crypto/rand"
 	"crypto/sha1"
-	"crypto/tls"
 	"fmt"
 	"hash"
 	"io"
@@ -28,9 +27,11 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/httptest"
-	"github.com/useflyent/fhttp/httputil"
+	tls "github.com/refraction-networking/utls"
+
+	. "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/httptest"
+	"github.com/wnxd/fhttp/httputil"
 )
 
 type clientServerTest struct {

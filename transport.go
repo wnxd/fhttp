@@ -17,10 +17,8 @@ import (
 	"compress/zlib"
 	"container/list"
 	"context"
-	"crypto/tls"
 	"errors"
 	"fmt"
-	"github.com/andybalholm/brotli"
 	"io"
 	"log"
 	"net"
@@ -33,7 +31,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/useflyent/fhttp/httptrace"
+	tls "github.com/refraction-networking/utls"
+
+	"github.com/andybalholm/brotli"
+
+	"github.com/wnxd/fhttp/httptrace"
 
 	"golang.org/x/net/http/httpguts"
 	"golang.org/x/net/http/httpproxy"

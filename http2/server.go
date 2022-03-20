@@ -29,7 +29,6 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"crypto/tls"
 	"errors"
 	"fmt"
 	"io"
@@ -46,8 +45,10 @@ import (
 	"sync"
 	"time"
 
-	http "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/http2/hpack"
+	tls "github.com/refraction-networking/utls"
+
+	http "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/http2/hpack"
 
 	"golang.org/x/net/http/httpguts"
 )

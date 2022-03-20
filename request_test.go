@@ -10,6 +10,7 @@ import (
 	"context"
 	"crypto/rand"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
 	"math"
@@ -21,8 +22,8 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/httptest"
+	. "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/httptest"
 )
 
 func TestQuery(t *testing.T) {
@@ -828,7 +829,7 @@ func TestMaxBytesReaderStickyError(t *testing.T) {
 				firstErr = err
 				continue
 			}
-			if !reflect.DeepEqual(err, firstErr) {
+			if !errors.Is(err, firstErr) {
 				return fmt.Errorf("non-sticky error. got log:\n%s", log.Bytes())
 			}
 			t.Logf("Got log: %s", log.Bytes())

@@ -8,7 +8,6 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"crypto/tls"
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
@@ -32,10 +31,12 @@ import (
 	"testing"
 	"time"
 
-	http "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/http2/hpack"
-	"github.com/useflyent/fhttp/httptest"
-	"github.com/useflyent/fhttp/httptrace"
+	tls "github.com/refraction-networking/utls"
+
+	http "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/http2/hpack"
+	"github.com/wnxd/fhttp/httptest"
+	"github.com/wnxd/fhttp/httptrace"
 )
 
 var (

@@ -12,7 +12,6 @@ import (
 	"compress/gzip"
 	"compress/zlib"
 	"context"
-	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -36,11 +35,13 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/httptest"
-	"github.com/useflyent/fhttp/httputil"
-	"github.com/useflyent/fhttp/internal"
-	"github.com/useflyent/fhttp/internal/testenv"
+	tls "github.com/refraction-networking/utls"
+
+	. "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/httptest"
+	"github.com/wnxd/fhttp/httputil"
+	"github.com/wnxd/fhttp/internal"
+	"github.com/wnxd/fhttp/internal/testenv"
 )
 
 type dummyAddr string

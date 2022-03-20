@@ -15,7 +15,6 @@ import (
 	"compress/gzip"
 	"context"
 	"crypto/rand"
-	"crypto/tls"
 	"crypto/x509"
 	"encoding/binary"
 	"errors"
@@ -38,12 +37,14 @@ import (
 	"testing/iotest"
 	"time"
 
-	. "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/httptest"
-	"github.com/useflyent/fhttp/httptrace"
-	"github.com/useflyent/fhttp/httputil"
-	"github.com/useflyent/fhttp/internal"
-	"github.com/useflyent/fhttp/internal/nettrace"
+	tls "github.com/refraction-networking/utls"
+
+	. "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/httptest"
+	"github.com/wnxd/fhttp/httptrace"
+	"github.com/wnxd/fhttp/httputil"
+	"github.com/wnxd/fhttp/internal"
+	"github.com/wnxd/fhttp/internal/nettrace"
 
 	"golang.org/x/net/http/httpguts"
 )
@@ -1565,7 +1566,7 @@ func TestTransportDialPreservesNetOpProxyError(t *testing.T) {
 		Net: "tcp",
 		Err: errDial, // original error, unwrapped.
 	}
-	if !reflect.DeepEqual(oe, want) {
+	if !errors.Is(oe, want) {
 		t.Errorf("Got error %#v; want %#v", oe, want)
 	}
 }

@@ -9,7 +9,6 @@ import (
 	"compress/gzip"
 	"compress/zlib"
 	"context"
-	"crypto/tls"
 	"errors"
 	"flag"
 	"fmt"
@@ -28,8 +27,10 @@ import (
 	"testing"
 	"time"
 
-	http "github.com/useflyent/fhttp"
-	"github.com/useflyent/fhttp/httptest"
+	tls "github.com/refraction-networking/utls"
+
+	http "github.com/wnxd/fhttp"
+	"github.com/wnxd/fhttp/httptest"
 
 	"golang.org/x/net/http2/hpack"
 )
